@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const router = require("./routes/route");
 const cors = require("cors");
-
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //connect to database mongoose
 mongoose
-  .connect("mongodb://localhost:27017/post")
+  .connect(process.env.DATABASE_URL)
   .then(() => console.log("database connected"))
   .catch((err) => console.log(err, "error connecting db"));
 
